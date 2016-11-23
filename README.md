@@ -52,5 +52,5 @@ Veja também a lista de [contributors](https://github.com/filipemagomes/CartaoDe
 
 ## Licença
 
-Este projeto é licenciado sob a Licença GNU Affero General Public License - ver o ficheiro [LICENSE.md](LICENSE.md) para mais detalhes
+Este projeto é licenciado sob a Licença GNU Affero General Public License - ver o ficheiro [LICENSE](LICENSE) para mais detalhes
 
