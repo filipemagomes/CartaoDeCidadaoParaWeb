@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <title>Dados do cart&atilde;o de cidad&atilde;o</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            // Obtem os dados do cart�o do cidad�o via JSONP.
+
+            var url = "http://localhost:11111";
+
+            var success = function (data) {
+
+                // Parse Json para obter a entidade Cidad�o.
+
+                data = $.parseJSON(data);
+
+                if (data != null) {
+
+                    //Preenche inputs com os dados do cidad�o.
+                    // Adicionar as propriedades que queremos.
+                    // S� adicionei algumas para demonstra��o.
+
+                    $("#nome").val(data.NomeCompleto);
+                    $("#datanascimento").val(data.DataNascimento).toString();
+                    $("#rua").val(data.Rua);
+                    $("#codigopostal").val(data.CodigoPostal);
+                    $("#localidade").val(data.Localidade);
+                    $("#fotografia").attr('src', 'data:image/jpg;base64,'+data.Fotografia);
+                }
+            };
+
+            $.ajax({
+                type: 'GET',
+                url: url,
+                data: { todo: "jsonp" },
+                dataType: "jsonp",
+                crossDomain: true,
+                cache: false,
+                success: success,
+                error: function (jqXHR, textStatus, errorThrown) {
+
+                    alert(errorThrown);
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Dados do cart&atilde;o de cidad&atilde;o</h1>
+    <label>Nome:</label>  <input type="text" id="nome" name="nome" value="" style="width:300px" /><br />
+    <label>Data Nascimento:</label>  <input type="text" id="datanascimento" name="datanascimento" value="" style="width:300px" /><br />
+    <label>Rua:</label>  <input type="text" id="rua" name="rua" value="" style="width:300px" /><br />
+    <label>C&oacute;digo Postal:</label>  <input type="text" id="codigopostal" name="codigopostal" value="" style="width:300px" /><br />
+    <label>Localidade:</label>  <input type="text" id="localidade" name="localidade" value="" style="width:300px" /><br />
+    <img id="fotografia" src="#" alt="Fotografia" />
+</body>
+</html>
